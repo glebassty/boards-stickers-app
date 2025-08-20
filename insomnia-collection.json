@@ -1,0 +1,83 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2025-08-19T12:00:00.000Z",
+  "__export_source": "chatgpt",
+  "resources": [
+    {
+      "_id": "wrk_boards_api",
+      "_type": "workspace",
+      "name": "Boards Stickers API",
+      "description": "Workspace для тестирования API досок и стикеров"
+    },
+    {
+      "_id": "env_base",
+      "_type": "environment",
+      "parentId": "wrk_boards_api",
+      "name": "Base Environment",
+      "data": {
+        "base_url": "http://localhost:4000/boards"
+      }
+    },
+    {
+      "_id": "req_create_board",
+      "_type": "request",
+      "parentId": "wrk_boards_api",
+      "name": "Create Board",
+      "method": "POST",
+      "url": "{{ base_url }}",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"title\": \"My First Board\"\n}"
+      }
+    },
+    {
+      "_id": "req_get_boards",
+      "_type": "request",
+      "parentId": "wrk_boards_api",
+      "name": "Get All Boards",
+      "method": "GET",
+      "url": "{{ base_url }}"
+    },
+    {
+      "_id": "req_create_sticker",
+      "_type": "request",
+      "parentId": "wrk_boards_api",
+      "name": "Create Sticker",
+      "method": "POST",
+      "url": "{{ base_url }}/1/stickers",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"text\": \"My first sticker\",\n  \"layer\": 0\n}"
+      }
+    },
+    {
+      "_id": "req_get_stickers",
+      "_type": "request",
+      "parentId": "wrk_boards_api",
+      "name": "Get Stickers by Board",
+      "method": "GET",
+      "url": "{{ base_url }}/1/stickers"
+    },
+    {
+      "_id": "req_update_sticker",
+      "_type": "request",
+      "parentId": "wrk_boards_api",
+      "name": "Update Sticker",
+      "method": "PATCH",
+      "url": "{{ base_url }}/stickers/1",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"text\": \"Updated sticker\",\n  \"layer\": 1\n}"
+      }
+    },
+    {
+      "_id": "req_delete_sticker",
+      "_type": "request",
+      "parentId": "wrk_boards_api",
+      "name": "Delete Sticker",
+      "method": "DELETE",
+      "url": "{{ base_url }}/stickers/1"
+    }
+  ]
+}
