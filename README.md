@@ -1,83 +1,106 @@
 # Stickers App
 
-## Описание
+Прототип модуля "Стикеры" для доски.
+Есть CRUD и сокеты. Пока только API, фронтенда нет.
 
-Прототип модуля "Стикеры" для виртуальной доски.  
-Реализованы:
+---
 
-CRUD REST API для стикеров
-WebSocket события через socket.io
-PostgreSQL + Sequelize
+## что умеет
 
-## Стек
+- создавать доски и стикеры
+- получать список стикеров
+- редактировать и удалять стикеры
+- данные хранятся в postgres (через sequelize)
 
-Node.js + TypeScript
-Express
-PostgreSQL + Sequelize
-socket.io
+---
 
-## Установка и запуск
+## как запустить
 
-1. Установите зависимости:
+1. ставим зависимости
 
+   ```bash
    npm install
+   ```
 
-2. Заполните .env:
+2. настраиваем `.env` (пример)
 
-DB*HOST=localhost
-DB_PORT=5432
-DB_NAME=stickers
-DB_USER=ваш*пользователь
-DB*PASSWORD=ваш*пароль
-PORT=4000
+   ```
+   DB_HOST=localhost
+   DB_PORT=5432
+   DB_NAME=stickers
+   DB_USER=your_user
+   DB_PASSWORD=your_password
+   PORT=4000
+   ```
 
-3. Запустите PostgreSQL (желательно 15) и создай базу данных `stickers`.
+3. поднимаем postgres (лучше 15, но должно и на других работать)
 
-createdb stickers
+   ```bash
+   createdb stickers
+   ```
 
-4. Запустите проект в dev-режиме:
+4. запускаем
 
+   ```bash
    npm run dev
+   ```
 
-5. Сервер доступен на [http://localhost:4000](http://localhost:4000)
+сервер будет на [http://localhost:4000](http://localhost:4000)
 
-## API
+---
 
-- `POST /boards/:boardId/stickers` — создать стикер
-- `GET /boards/:boardId/stickers` — получить список стикеров
-- `PATCH /boards/stickers/:id` — обновить стикер
-- `DELETE /boards/stickers/:id` — удалить стикер
+## api
 
-## Примеры команд
+стикеры:
 
-Создать доску:
+- POST /boards/\:boardId/stickers
+- GET /boards/\:boardId/stickers
+- PATCH /boards/stickers/\:id
+- DELETE /boards/stickers/\:id
 
+---
+
+## примеры
+
+создать доску:
+
+```bash
 curl -X POST http://localhost:4000/boards \
--H "Content-Type: application/json" \
--d '{"title":"Первая доска"}'
+  -H "Content-Type: application/json" \
+  -d '{"title":"Первая доска"}'
+```
 
-Создать стикер:
+создать стикер:
 
+```bash
 curl -X POST http://localhost:4000/boards/1/stickers \
--H "Content-Type: application/json" \
--d '{"text":"Первый стикер","layer":1}'
+  -H "Content-Type: application/json" \
+  -d '{"text":"Первый стикер","layer":1}'
+```
 
-Получить стикеры на доске:
+получить список:
 
+```bash
 curl http://localhost:4000/boards/1/stickers
+```
 
-Редактировать стикер
+обновить:
 
+```bash
 curl -X PATCH http://localhost:4000/boards/stickers/1 \
--H "Content-Type: application/json" \
--d '{"text":"Обновлённый стикер"}'
+  -H "Content-Type: application/json" \
+  -d '{"text":"обновлённый текст"}'
+```
 
-Удалить
+удалить:
 
+```bash
 curl -X DELETE http://localhost:4000/boards/stickers/1
+```
 
-Используйте скрипты для редактирования
-Добавлено пока 2 скрипта
+---
 
-npm run create:board - создание доски
-npm run create:sticker - создание стикера
+## скрипты
+
+- `npm run create:board` — создаёт тестовую доску
+- `npm run create:sticker` — создаёт тестовый стикер
