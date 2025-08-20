@@ -76,7 +76,7 @@ curl -X PATCH http://localhost:4000/boards/stickers/1 \
 
 curl -X DELETE http://localhost:4000/boards/stickers/1
 
-Используйте скрипты для редоктирования
+Используйте скрипты для редактирования
 Добавлено пока 2 скрипта
 
 npm run create:board - создание доски
